@@ -1,1 +1,1 @@
-[](./assets/users.png)
+[](/assets/users.png)
