@@ -43,9 +43,8 @@ export default function SignUp() {
         };
         createUser(newUser)
             .then(() => {
-                // Notiflix.Notify.success('the user has been created')
-                navigate('/SignIn')
-                // console.log('wtf')
+                Notiflix.Notify.success('the user has been created');
+                navigate('/SignIn');
             })
             .catch((error) => Notiflix.Notify.warning(error.response.data.message))
     };

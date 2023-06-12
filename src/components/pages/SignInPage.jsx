@@ -12,6 +12,11 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { logInUser } from 'services/auth-service';
+import { useNavigate } from 'react-router-dom/dist';
+import Notiflix from 'notiflix';
+import { loginThunk } from 'redux/auth/thunk';
+import { useDispatch } from 'react-redux';
 
 function Copyright(props) {
   return (
@@ -31,13 +36,25 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    dispatch(
+      loginThunk({
+              email: data.get('email'),
+              password: data.get('password')
+      })
+    )
+    // logInUser({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // }).then(() => {
+    //       Notiflix.Notify.success('Successful authorization');
+    //       navigate('/');
+    // }).catch((error) => Notiflix.Notify.warning(error.message))
   };
 
   return (
