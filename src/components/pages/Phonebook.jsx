@@ -1,12 +1,12 @@
 import ContactForm from "../phonebook/contactForm";
 import ContactList from "../contacts/ContactsList";
 import Filter from "../contacts/Filter";
-import Loader from "../loader";
+import Loader from "../Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactsThunk } from "services/thunk";
 import { useEffect } from "react";
 
-function Home() {
+function Phonebook() {
     
     const { items, isLoading, error } = useSelector((state) => state.contacts)
 
@@ -18,15 +18,15 @@ function Home() {
     
     return (
         <div
-            style={{
-                height: '100vh',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 40,
-                color: '#010101'
-            }}
+            // style={{
+            //     height: '100vh',
+            //     display: 'flex',
+            //     flexDirection: 'column',
+            //     justifyContent: 'center',
+            //     alignItems: 'center',
+            //     fontSize: 40,
+            //     color: '#010101'
+            // }}
         >
 
         <h1>Phonebook</h1>
@@ -43,4 +43,4 @@ function Home() {
     );
 };
 
-export default Home;
+export default Phonebook;

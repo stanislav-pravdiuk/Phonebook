@@ -1,20 +1,24 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
+import Loader from 'components/Loader';
 
 function Layout() {
     return <div>
                 <header>
                     <ul>
                         <li>
-                            <NavLink to='/'>Home</NavLink>
+                            <NavLink to='/'>Phonebook</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/movies'>Movies</NavLink>
+                            <NavLink to='/SignUp'>Sign up</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/SignIn'>Sign in</NavLink>
                         </li>
                     </ul>
                 </header>
                 <main>
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<Loader/>}>
                         <Outlet />
                     </Suspense>
                 </main>

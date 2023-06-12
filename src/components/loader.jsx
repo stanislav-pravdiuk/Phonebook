@@ -1,6 +1,6 @@
 import { Watch } from 'react-loader-spinner'
 
-function loader() {
+function Loader() {
     return (
             <Watch
                 height="80"
@@ -15,4 +15,4 @@ function loader() {
         )
     };
 
-export default loader;
+export default Loader;
