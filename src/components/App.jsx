@@ -1,45 +1,18 @@
-import ContactForm from "./phonebook/contactForm";
-import ContactList from "./contacts/ContactsList";
-import Filter from "./contacts/Filter";
-import Loader from "./loader";
-import { useDispatch, useSelector } from "react-redux";
-import { getContactsThunk } from "services/thunk";
-import { useEffect } from "react";
+import Layout from "./layout/Layout";
+import { Route, Routes } from "react-router-dom/dist";
+import { lazy } from "react";
 
+const Home = lazy(() => import('./pages/Home'));
 
 function App() {
-
-  const { items, isLoading, error } = useSelector((state) => state.contacts)
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getContactsThunk())
-  },[dispatch])
   
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      <h1>Phonebook</h1>
-      <ContactForm />
-
-      <h2>Contacts</h2>
-      <Filter />
-
-      {isLoading&& <Loader />}
-      {items&& <ContactList />}
-      {error&& <h2>{error}</h2>}
-
-    </div>
+    <Routes>
+      <Route exact path='/' element={<Layout />}>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
+    
   );
 };
 
