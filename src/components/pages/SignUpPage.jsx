@@ -46,7 +46,7 @@ export default function SignUp() {
                 Notiflix.Notify.success('the user has been created');
                 navigate('/SignIn');
             })
-            .catch((error) => Notiflix.Notify.warning(error.response.data.message))
+            .catch((error) => Notiflix.Notify.warning(error.message))
     };
 
     return (

@@ -2,12 +2,10 @@ import { NavLink, useNavigate } from "react-router-dom/dist";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "redux/auth/slice";
 import { delToken } from "services/auth-service";
-import { useEffect } from "react";
-import { getProfileThunk } from "redux/auth/thunk";
 
 function Header() {
 
-    const { profile, token } = useSelector((state) => state.auth);
+    const { profile } = useSelector((state) => state.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -20,11 +18,6 @@ function Header() {
         delToken();
         // запрос на бєк
     };
-
-    useEffect(() => {
-        token && dispatch(getProfileThunk())
-        console.log(profile)
-    }, [token, dispatch]);
 
     return (
         <header>

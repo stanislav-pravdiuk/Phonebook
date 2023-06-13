@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -12,11 +10,9 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom/dist';
 import Notiflix from 'notiflix';
 import { loginThunk } from 'redux/auth/thunk';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 function Copyright(props) {
   return (
@@ -29,22 +25,13 @@ function Copyright(props) {
       {'.'}
     </Typography>
   );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+};
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
 
-  const isAuth = useSelector((state) => state.auth.token)
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    isAuth && navigate('/');
-    Notiflix.Notify.success('Successful authorization')
-}, [isAuth, navigate])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -54,14 +41,11 @@ export default function SignIn() {
         email: data.get('email'),
         password: data.get('password')
       })
-    );
-    // logInUser({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // }).then(() => {
-    //       Notiflix.Notify.success('Successful authorization');
-    //       navigate('/');
-    // }).catch((error) => Notiflix.Notify.warning(error.message))
+    ).unwrap()
+      .then((res) => {
+        Notiflix.Notify.success(`Hello, ${res.user.name}`)
+      })
+      .catch((error) => {Notiflix.Notify.warning(error.message)})
   };
 
   return (
@@ -118,10 +102,6 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
               />
               <Button
                 type="submit"

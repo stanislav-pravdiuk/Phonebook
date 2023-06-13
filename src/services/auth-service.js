@@ -26,3 +26,5 @@ export const getProfile = async () => {
     const { data } = await instance('/users/current')
     return data
 };
+
+// getProfile()
