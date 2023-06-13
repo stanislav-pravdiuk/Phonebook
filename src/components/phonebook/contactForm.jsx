@@ -2,6 +2,7 @@ import { useState } from "react";
 import css from './contact-form.module.css';
 import { useDispatch } from "react-redux";
 import { postContactThunk } from "services/thunk";
+import { postContact } from "services/auth-service";
 
 function ContactForm() {
 
@@ -19,7 +20,8 @@ function ContactForm() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        dispatch(postContactThunk(state));
+        // dispatch(postContactThunk(state));
+        postContact(state)
         setState({ name: '', number: '', });
     };
     
