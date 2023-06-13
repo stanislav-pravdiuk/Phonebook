@@ -1,11 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import Loader from 'components/loader/Loader';
-import Header from 'components/header/Header';
+import Navigation from 'components/navigation/Navigation';
+import { useSelector } from 'react-redux';
 
 function Layout() {
+
+    const { profile } = useSelector((state) => state.auth);
+
     return <div>
-                <Header/>
+                {profile && <Navigation/>}
                 <main>
                     <Suspense fallback={<Loader/>}>
                         <Outlet />

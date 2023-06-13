@@ -12,14 +12,15 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createUser } from 'services/auth-service';
 import Notiflix from 'notiflix';
-import { useNavigate } from 'react-router-dom/dist';
+import { useDispatch } from 'react-redux';
+import { loginThunk } from 'redux/auth/thunk';
 
 function Copyright(props) {
     return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit" href="https://github.com/stanislav-pravdiuk/goit-react-hw-08-phonebook">
-        Phonebook
+        Stanislav Pravdiuk
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -27,12 +28,10 @@ function Copyright(props) {
     );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -44,7 +43,10 @@ export default function SignUp() {
         createUser(newUser)
             .then(() => {
                 Notiflix.Notify.success('the user has been created');
-                navigate('/SignIn');
+                dispatch(loginThunk({
+                    email: data.get('email'),
+                    password: data.get('password'),
+                }))
             })
             .catch((error) => Notiflix.Notify.warning(error.message))
     };
@@ -112,7 +114,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
                 <Grid item>
-                <Link href="SignIn" variant="body2">
+                <Link href="login" variant="body2">
                     Already have an account? Sign in
                 </Link>
                 </Grid>

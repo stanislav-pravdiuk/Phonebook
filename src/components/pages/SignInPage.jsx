@@ -18,8 +18,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://github.com/stanislav-pravdiuk/goit-react-hw-08-phonebook">
+        Stanislav Pravdiuk
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -113,7 +113,7 @@ export default function SignIn() {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="SignUp" variant="body2">
+                  <Link href="register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

@@ -6,7 +6,7 @@ function GetStarted() {
 
     return (
         <div>
-            <button onClick={() => {navigate('/SignIn')}}>Get started</button>
+            <button onClick={() => {navigate('/login')}}>Get started</button>
         </div>
     );
 };
