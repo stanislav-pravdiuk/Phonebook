@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
-import { loginThunk } from "./thunk";
+import { getProfileThunk, loginThunk } from "./thunk";
 import Notiflix from "notiflix";
 
-const handlePending = (state, { payload }) => {
+const handlePending = (state) => {
     state.isLoading = true;
 };
 const handleFulfilled = (state, { payload }) => {
@@ -11,22 +11,42 @@ const handleFulfilled = (state, { payload }) => {
     state.error = '';
     state.token = payload.token;
 };
-const handleRejected = (state, actions) => {
+const handleFulfilledProfile = (state, { payload }) => {
     state.isLoading = false;
     state.error = '';
+    state.profile = payload;
+};
+const handleRejected = (state, actions) => {
+    state.isLoading = false;
+    state.error = actions.error.message;
     Notiflix.Notify.warning(actions.error.message)
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        logOut(state) {
+            state.profile = null
+            state.token = ''   
+        },
+
+    },
     extraReducers: (builder) => {
         builder
-            .addCase(loginThunk.pending, handlePending)
             .addCase(loginThunk.fulfilled, handleFulfilled)
-            .addCase(loginThunk.rejected, handleRejected)
+            .addCase(getProfileThunk.fulfilled, handleFulfilledProfile)
+            .addMatcher(isAnyOf(
+                loginThunk.pending, getProfileThunk.pending),
+                handlePending
+            )
+            .addMatcher(isAnyOf(
+                loginThunk.rejected, getProfileThunk.rejected),
+                handleRejected
+            )
+
     }
 });
 
 export const authReducer = authSlice.reducer;
+export const { logOut } = authSlice.actions;
