@@ -1,12 +1,12 @@
 import { useState } from "react";
 import css from './contact-form.module.css';
-import { useDispatch } from "react-redux";
-import { postContactThunk } from "services/thunk";
+// import { useDispatch } from "react-redux";
+// import { postContactThunk } from "services/thunk";
 import { postContact } from "services/requestsAPI";
 
 function ContactForm() {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [state, setState] = useState({
         name: '',
