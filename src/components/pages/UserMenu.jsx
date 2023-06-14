@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom/dist";
-import { logOut } from "redux/auth/slice";
-import { delToken } from "services/auth-service";
+import { logOut } from "redux/auth/authSlice";
+import { delToken } from "services/requestsAPI";
 
 function UserMenu() {
 

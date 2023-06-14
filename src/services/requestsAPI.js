@@ -1,26 +1,45 @@
-// const BASE_URL = 'https://64758efae607ba4797dc0873.mockapi.io';
+import axios from "axios"
 
-// export const getContacts = async (endpoint) => {
-//     const data = await fetch(`${BASE_URL}${endpoint}`)
-//     return await data.json()
-// };
+const publicIstance = axios.create({
+    baseURL: 'https://connections-api.herokuapp.com'
+});
 
-// export const postContact = async (endpoint, requestBody) => {
-//   const response = await fetch(`${BASE_URL}${endpoint}`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(requestBody),
-//   });
+const privateInstance = axios.create({
+    baseURL: 'https://connections-api.herokuapp.com'
+});
 
-//   return await response.json();
-// };
+const setToken = (token) => {
+    privateInstance.defaults.headers.common['Authorization'] = token;
+};
 
-// export const deleteContact = async (endpoint) => {
-//   const response = await fetch(`${BASE_URL}${endpoint}`, {
-//     method: "DELETE",
-//   });
+export const delToken = () => {
+    delete privateInstance.defaults.headers.common['Authorization'];
+};
 
-//   return await response.json();
-// };
+export const createUser = async (body) => {
+    return await publicIstance.post('/users/signup', body)
+};
+
+export const logInUser = async (body) => {
+    const { data } = await publicIstance.post('/users/login', body);
+    setToken(`Bearer ${data.token}`)
+    return data
+};
+
+export const getProfile = async () => {
+    const { data } = await privateInstance('/users/current')
+    return data
+};
+
+export const postContact = async (body) => {
+    return await privateInstance.post('/contacts', body)
+};
+
+export const getContacts = async () => {
+    const { data } = await privateInstance('/contacts')
+    return data
+};
+
+export const deleteContact = async (body) => {
+    return await privateInstance.delete(`${body}`);
+};

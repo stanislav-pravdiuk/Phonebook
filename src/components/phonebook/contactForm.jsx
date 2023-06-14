@@ -2,7 +2,7 @@ import { useState } from "react";
 import css from './contact-form.module.css';
 import { useDispatch } from "react-redux";
 import { postContactThunk } from "services/thunk";
-import { postContact } from "services/auth-service";
+import { postContact } from "services/requestsAPI";
 
 function ContactForm() {
 

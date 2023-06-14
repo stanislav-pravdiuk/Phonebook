@@ -10,10 +10,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createUser } from 'services/auth-service';
+import { createUser } from 'services/requestsAPI';
 import Notiflix from 'notiflix';
 import { useDispatch } from 'react-redux';
-import { loginThunk } from 'redux/auth/thunk';
+import { loginThunk } from 'services/thunk';
 
 function Copyright(props) {
     return (

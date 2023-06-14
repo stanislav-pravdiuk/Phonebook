@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
-import { getProfileThunk, loginThunk } from "./thunk";
+import { getProfileThunk, loginThunk } from "services/thunk";
 import Notiflix from "notiflix";
 
 const handlePending = (state) => {

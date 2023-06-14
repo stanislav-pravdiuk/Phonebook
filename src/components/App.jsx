@@ -1,8 +1,8 @@
 import Layout from "./layout/Layout";
 import { Route, Routes } from "react-router-dom/dist";
 import { lazy, Suspense } from "react";
-import PublicRoute from "./publicRoute/PublicRoute";
-import PrivateRoute from "./privateRoute/PrivateRoute";
+import PublicRoute from "../publicRoute/PublicRoute";
+import PrivateRoute from "../privateRoute/PrivateRoute";
 
 const Phonebook = lazy(() => import('./pages/Phonebook'));
 const SignUp = lazy(() => import('./pages/SignUpPage'));

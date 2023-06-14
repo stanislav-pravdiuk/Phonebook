@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Notiflix from 'notiflix';
-import { loginThunk } from 'redux/auth/thunk';
+import { loginThunk } from 'services/thunk';
 import { useDispatch } from 'react-redux';
 
 function Copyright(props) {
