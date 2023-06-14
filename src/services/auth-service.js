@@ -39,3 +39,7 @@ export const getContacts = async () => {
     const { data } = await privateInstance('/contacts')
     return data
 };
+
+export const deleteContact = async (contactId) => {
+    return await privateInstance.delete(`${contactId}`);
+};
