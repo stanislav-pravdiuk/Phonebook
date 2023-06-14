@@ -13,6 +13,20 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Link from '@mui/material/Link';
+
+function Copyright() {
+    return (
+    <Typography variant="body2" color="text.secondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://github.com/stanislav-pravdiuk/goit-react-hw-08-phonebook">
+        Stanislav Pravdiuk
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+    </Typography>
+    );
+}
 
 const defaultTheme = createTheme();
 
@@ -47,7 +61,7 @@ export default function UserMenu() {
                 pb: 6,
             }}
         >
-            <Container maxWidth="sm">
+            <Container maxWidth="xl">
             <Typography
                 component="h1"
                 variant="h2"
@@ -67,8 +81,17 @@ export default function UserMenu() {
             </Stack>
             </Container>
         </Box>
-        
-        </main>
+            </main>
+                    <CssBaseline />
+        <Box sx={{
+      bgcolor: 'background.paper',
+      p: 6,
+      position: 'fixed',
+      bottom: 0,
+      width: '100%',
+    }} component="footer">
+        <Copyright />
+            </Box>
     </ThemeProvider>
     );
 }
