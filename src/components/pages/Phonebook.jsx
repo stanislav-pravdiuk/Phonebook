@@ -21,7 +21,7 @@ function Phonebook() {
 
         <ContactForm />
 
-        <h2>Contacts</h2>
+        {/* <h2>Contacts</h2> */}
         <Filter />
 
         {isLoading&& <Loader />}
