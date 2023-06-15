@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom/dist";
+// import { useNavigate } from "react-router-dom/dist";
 import { logOut } from "redux/auth/authSlice";
 import { delToken } from "services/instance";
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from '@mui/material/Link';
+import { NavLink } from "react-router-dom/dist";
 
 function Copyright() {
     return (
@@ -33,7 +34,7 @@ const defaultTheme = createTheme();
 export default function UserMenu() {
 
     const { profile } = useSelector((state) => state.auth);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
     
         const handleLogout = () => {
@@ -46,9 +47,11 @@ export default function UserMenu() {
         <CssBaseline />
         <AppBar position="relative">
         <Toolbar>
-            <AccountBoxIcon sx={{ mr: 2 }} />
+            <ContactPhoneIcon sx={{ mr: 2 }} />
             <Typography variant="h6" color="inherit" noWrap>
-                Profile
+                        <NavLink style={{
+                            color: 'inherit', textDecoration: 'none',
+                        }} to='/'>Phonebook</NavLink>
             </Typography>
         </Toolbar>
         </AppBar>
@@ -75,9 +78,11 @@ export default function UserMenu() {
                 direction="row"
                 spacing={2}
                 justifyContent="center"
-            >
-                <Button variant="contained" onClick={() => { navigate('/') }}>Phonebook</Button>
-                <Button variant="outlined" onClick={handleLogout}>Logout</Button>
+                >
+                    <Button variant="contained" onClick={handleLogout}>Logout</Button>
+                    
+                {/* <Button variant="contained" onClick={() => { navigate('/') }}>Phonebook</Button>
+                <Button variant="outlined" onClick={handleLogout}>Logout</Button> */}
             </Stack>
             </Container>
         </Box>
