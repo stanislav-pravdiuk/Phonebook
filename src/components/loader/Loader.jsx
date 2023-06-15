@@ -1,17 +1,14 @@
-import { Watch } from 'react-loader-spinner'
+import { LinearProgress } from "@mui/material";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const defaultTheme = createTheme();
 
 function Loader() {
     return (
-            <Watch
-                height="80"
-                width="80"
-                radius="48"
-                color="black"
-                ariaLabel="watch-loading"
-                wrapperStyle={{}}
-                wrapperClassName=""
-                visible={true}
-            />
+        <ThemeProvider theme={defaultTheme}>
+            <LinearProgress variant="determinate" />
+        </ThemeProvider>
+        
         )
     };
 
