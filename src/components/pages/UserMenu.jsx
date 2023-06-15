@@ -76,7 +76,7 @@ export default function UserMenu() {
                 spacing={2}
                 justifyContent="center"
             >
-                <Button variant="contained" onClick={() => { navigate('/contacts') }}>Phonebook</Button>
+                <Button variant="contained" onClick={() => { navigate('/') }}>Phonebook</Button>
                 <Button variant="outlined" onClick={handleLogout}>Logout</Button>
             </Stack>
             </Container>

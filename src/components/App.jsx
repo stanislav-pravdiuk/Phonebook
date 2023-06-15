@@ -14,35 +14,36 @@ function App() {
   return (
     <Routes>
 
-      <Route path='profile' element={<Suspense>
+      <Route path='profile' element={
+        <Suspense>
           <PrivateRoute>
             <UserMenu />
           </PrivateRoute>
-      </Suspense>} />
+        </Suspense>} />
       
       <Route exact path='/' element={<Layout />}>
-        {/* <Route index element={<PrivateRoute>
-          <Phonebook />
-        </PrivateRoute>} /> */}
 
-        <Route path='contacts' element={<Suspense>
-          <PrivateRoute>
-            <Phonebook />
-          </PrivateRoute>
-        </Suspense>} />
+        <Route index element={
+          <Suspense>
+            <PrivateRoute>
+              <Phonebook />
+            </PrivateRoute>
+          </Suspense>} />
 
-        <Route path='register' element={<Suspense>
-          <PublicRoute>
-            <SignUp/>
-          </PublicRoute>          
-        </Suspense>} />
+        <Route path='register' element={
+          <Suspense>
+            <PublicRoute>
+              <SignUp/>
+            </PublicRoute>          
+          </Suspense>} />
 
-        <Route path='login' element={<Suspense>
-          <PublicRoute>
-            <SignIn />
-          </PublicRoute>
-        </Suspense>} />
-      </Route>
+        <Route path='login' element={
+          <Suspense>
+            <PublicRoute>
+              <SignIn />
+            </PublicRoute>
+          </Suspense>} />
+        </Route>
 
     </Routes>
     
