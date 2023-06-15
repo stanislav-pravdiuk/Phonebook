@@ -84,14 +84,14 @@ export default function UserMenu() {
             </main>
                     <CssBaseline />
         <Box sx={{
-      bgcolor: 'background.paper',
-      p: 6,
-      position: 'fixed',
-      bottom: 0,
-      width: '100%',
-    }} component="footer">
-        <Copyright />
-            </Box>
+            bgcolor: 'background.paper',
+            p: 6,
+            position: 'fixed',
+            bottom: 0,
+            width: '100%',
+        }} component="footer">
+            <Copyright />
+        </Box>
     </ThemeProvider>
     );
 }

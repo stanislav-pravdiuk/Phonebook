@@ -51,7 +51,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
+      <CssBaseline />
         <Grid
           item
           xs={false}
@@ -125,4 +125,4 @@ export default function SignIn() {
       </Grid>
     </ThemeProvider>
   );
-}
+};

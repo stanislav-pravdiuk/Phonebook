@@ -11,7 +11,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const defaultTheme = createTheme();
@@ -23,7 +22,6 @@ function ContactList() {
 
         if (contacts.length !== 0) {
                 return (
-
         <ThemeProvider theme={defaultTheme}>
                 <CssBaseline />
                 <Container sx={{ py: 8 }} maxWidth="md">
@@ -62,9 +60,8 @@ function ContactList() {
         </ThemeProvider>
                 );
         };
-        
+
         return <p>No contacts found</p>
 };
-                
 
 export default ContactList;

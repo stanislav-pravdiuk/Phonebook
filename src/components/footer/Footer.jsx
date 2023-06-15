@@ -9,9 +9,9 @@ function Copyright() {
     return (
     <Typography variant="body2" color="text.secondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" href="https://github.com/stanislav-pravdiuk/goit-react-hw-08-phonebook">
-        Stanislav Pravdiuk
-        </Link>{' '}
+            <Link color="inherit" href="https://github.com/stanislav-pravdiuk/goit-react-hw-08-phonebook">
+                Stanislav Pravdiuk
+            </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
     </Typography>
@@ -23,17 +23,17 @@ const defaultTheme = createTheme();
 function Footer() {
     return (
         <ThemeProvider theme={defaultTheme}>
-                    <CssBaseline />
-        <Box sx={{
-      bgcolor: 'background.paper',
-      p: 6,
-      position: 'fixed',
-      bottom: 0,
-      width: '100%',
-    }} component="footer">
-        <Copyright />
+            <CssBaseline />
+            <Box sx={{
+                bgcolor: 'background.paper',
+                p: 6,
+                position: 'fixed',
+                bottom: 0,
+                width: '100%',
+            }} component="footer">
+                <Copyright />
             </Box>
-            </ThemeProvider>
+        </ThemeProvider>
     );
 };
 

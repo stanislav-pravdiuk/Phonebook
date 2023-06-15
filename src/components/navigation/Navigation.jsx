@@ -7,10 +7,6 @@ function Header() {
 
     return (
         <header>
-            {/* <ul> */}
-
-                {/* <li><NavLink to='/'>Phonebook</NavLink></li> */}
-
                 {profile
                     ? <NavLink to='/profile'>{profile.name}</NavLink>
                     : <NavLink to='/login'>Sign in</NavLink>
@@ -19,8 +15,6 @@ function Header() {
                 {!profile &&
                     <NavLink to='/register'>Sign up</NavLink>
                 }
-                
-            {/* </ul> */}
         </header>
     )
 };
