@@ -63,8 +63,8 @@ export default function UserMenu() {
         >
             <Container maxWidth="xl">
             <Typography
-                component="h1"
-                variant="h2"
+                component="h1" 
+                variant="h5"
                 align="center"
                 color="text.primary"
                 gutterBottom
