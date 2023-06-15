@@ -21,9 +21,15 @@ function App() {
       </Suspense>} />
       
       <Route exact path='/' element={<Layout />}>
-        <Route index element={<PrivateRoute>
+        {/* <Route index element={<PrivateRoute>
           <Phonebook />
-        </PrivateRoute>} />
+        </PrivateRoute>} /> */}
+
+        <Route path='contacts' element={<Suspense>
+          <PrivateRoute>
+            <Phonebook />
+          </PrivateRoute>
+        </Suspense>} />
 
         <Route path='register' element={<Suspense>
           <PublicRoute>
@@ -37,8 +43,6 @@ function App() {
           </PublicRoute>
         </Suspense>} />
       </Route>
-
-        
 
     </Routes>
     
