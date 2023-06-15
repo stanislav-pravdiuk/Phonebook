@@ -5,6 +5,8 @@ import Loader from "../loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactsThunk } from "services/thunk";
 import { useEffect } from "react";
+import React from "react";
+import Error from "components/error/Error";
 
 function Phonebook() {
     
@@ -25,7 +27,7 @@ function Phonebook() {
 
         {isLoading&& <Loader />}
         {items&& <ContactList />}
-        {error&& <h2>{error}</h2>}
+        {error && Error(error)}
 
         </div>
     );

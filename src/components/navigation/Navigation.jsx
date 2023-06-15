@@ -18,7 +18,10 @@ function Header() {
 <header>
     <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
-        <AppBar position="relative">
+                <AppBar
+                    // position="relative"
+                    position='fixed'
+                width= '100%'>
         <Toolbar>
             <AccountBoxIcon sx={{ mr: 2 }} />
             <Typography variant="h6" color="inherit" noWrap>

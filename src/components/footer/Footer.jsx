@@ -23,10 +23,10 @@ const defaultTheme = createTheme();
 function Footer() {
     return (
         <ThemeProvider theme={defaultTheme}>
-            <CssBaseline />
+            {/* <CssBaseline /> */}
             <Box sx={{
                 bgcolor: 'background.paper',
-                p: 6,
+                p: 2,
                 position: 'fixed',
                 bottom: 0,
                 width: '100%',
