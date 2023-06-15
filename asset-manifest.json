@@ -1,17 +1,15 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-08-phonebook/static/css/main.7acaea2f.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.224950d9.js",
-    "static/js/458.62d19f74.chunk.js": "/goit-react-hw-08-phonebook/static/js/458.62d19f74.chunk.js",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.107c9d15.js",
+    "static/js/687.a460bdf0.chunk.js": "/goit-react-hw-08-phonebook/static/js/687.a460bdf0.chunk.js",
     "static/js/340.51070b4a.chunk.js": "/goit-react-hw-08-phonebook/static/js/340.51070b4a.chunk.js",
     "static/js/801.c43f6135.chunk.js": "/goit-react-hw-08-phonebook/static/js/801.c43f6135.chunk.js",
     "static/js/237.2cdab1ea.chunk.js": "/goit-react-hw-08-phonebook/static/js/237.2cdab1ea.chunk.js",
     "static/js/551.2cb8fcd3.chunk.js": "/goit-react-hw-08-phonebook/static/js/551.2cb8fcd3.chunk.js",
     "static/js/588.918537a8.chunk.js": "/goit-react-hw-08-phonebook/static/js/588.918537a8.chunk.js",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
-    "main.7acaea2f.css.map": "/goit-react-hw-08-phonebook/static/css/main.7acaea2f.css.map",
-    "main.224950d9.js.map": "/goit-react-hw-08-phonebook/static/js/main.224950d9.js.map",
-    "458.62d19f74.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/458.62d19f74.chunk.js.map",
+    "main.107c9d15.js.map": "/goit-react-hw-08-phonebook/static/js/main.107c9d15.js.map",
+    "687.a460bdf0.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/687.a460bdf0.chunk.js.map",
     "340.51070b4a.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/340.51070b4a.chunk.js.map",
     "801.c43f6135.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/801.c43f6135.chunk.js.map",
     "237.2cdab1ea.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/237.2cdab1ea.chunk.js.map",
@@ -19,7 +17,6 @@
     "588.918537a8.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/588.918537a8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.224950d9.js"
+    "static/js/main.107c9d15.js"
   ]
 }
