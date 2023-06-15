@@ -1,7 +1,7 @@
 import ContactForm from "../phonebook/contactForm";
 import ContactList from "../contacts/ContactsList";
 import Filter from "../contacts/Filter";
-import Loader from "../loader/Loader";
+// import Loader from "../loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactsThunk } from "services/thunk";
 import { useEffect } from "react";
@@ -25,7 +25,7 @@ function Phonebook() {
 
         <Filter />
 
-        {isLoading&& <Loader />}
+        {isLoading&& <p>loading</p>}
         {items&& <ContactList />}
         {error && Error(error)}
 
