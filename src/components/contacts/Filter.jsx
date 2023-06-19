@@ -1,6 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getContactsFilter } from "redux/selectors";
-import { filterContacts } from "redux/filter/filterSlice";
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,6 +6,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from "react-redux";
+import { getContactsFilter } from "redux/filter/filterSelectors";
+import { filterContacts } from "redux/filter/filterSlice";
 
 const defaultTheme = createTheme();
 

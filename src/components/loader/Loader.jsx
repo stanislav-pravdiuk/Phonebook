@@ -6,7 +6,7 @@ const defaultTheme = createTheme();
 function Loader() {
     return (
         <ThemeProvider theme={defaultTheme}>
-            <LinearProgress variant="determinate" />
+            <LinearProgress variant="determinate" value={50} />
         </ThemeProvider>
         
         )

@@ -9,9 +9,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Notiflix from 'notiflix';
-import { loginThunk } from 'services/thunk';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 
 function Copyright(props) {
@@ -37,7 +37,7 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     dispatch(
-      loginThunk({
+      logIn({
         email: data.get('email'),
         password: data.get('password')
       })
@@ -51,7 +51,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
-      <CssBaseline />
+        <CssBaseline />
         <Grid
           item
           xs={false}
@@ -125,4 +125,4 @@ export default function SignIn() {
       </Grid>
     </ThemeProvider>
   );
-};
+}

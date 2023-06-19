@@ -1,7 +1,4 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getFilteredContacts } from "redux/selectors";
-import { deleteContactThunk } from "services/thunk";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,8 +8,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import NotFound from './NotFound';
+import { useSelector, useDispatch } from "react-redux";
+import { getFilteredContacts } from "redux/filter/filterSelectors";
+import { deleteContact } from "redux/contacts/operations";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Box } from "@mui/material";
 
 const defaultTheme = createTheme();
 
@@ -21,8 +21,11 @@ function ContactList() {
         const dispatch = useDispatch();
         const contacts = useSelector(getFilteredContacts);
 
-        if (contacts.length !== 0) {
-                return (
+        if (contacts.length === 0) {
+        return (<NotFound />);
+        }
+
+        return (
         <ThemeProvider theme={defaultTheme}>
                 <CssBaseline />
                 <Container sx={{ py: 8 }} maxWidth="md">
@@ -49,7 +52,7 @@ function ContactList() {
                                                 </CardContent>
                                                 <CardActions>
                                                         <Button size="small" onClick={
-                                                                () => dispatch(deleteContactThunk(el.id))}>
+                                                                () => dispatch(deleteContact(el.id))}>
                                                                 Delete
                                                         </Button>
                                                 </CardActions>
@@ -59,24 +62,7 @@ function ContactList() {
                         </Grid>
                 </Container>
         </ThemeProvider>
-                );
-        };
-
-        return (
-                <ThemeProvider theme={defaultTheme}>
-                        <Box
-                                sx={{
-                                        bgcolor: 'background.paper',
-                                        pt: 8,
-                                        pb: 6,
-                                }}
-                        >
-                        <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                                No contacts found
-                        </Typography>
-                        </Box>
-                </ThemeProvider>
-        ); 
+        );
 };
 
 export default ContactList;

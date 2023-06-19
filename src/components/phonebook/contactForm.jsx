@@ -1,7 +1,3 @@
-import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { postContactThunk } from "services/thunk";
-import { postContact } from "services/requestsAPI";
 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -14,13 +10,15 @@ import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import {addContact} from '../../redux/contacts/operations';
 
 const defaultTheme = createTheme();
 
 function ContactForm() {
 
-    // const dispatch = useDispatch();
-
+    const dispatch = useDispatch()
     const [state, setState] = useState({
         name: '',
         number: '',
@@ -33,11 +31,10 @@ function ContactForm() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        // dispatch(postContactThunk(state));
-        postContact(state)
+        dispatch(addContact(state))
         setState({ name: '', number: '', });
     };
-    
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -102,7 +99,7 @@ function ContactForm() {
                 </Box>
             </Container>
         </ThemeProvider>
-    );
+        );
 };
 
 export default ContactForm;

@@ -9,11 +9,11 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createUser } from 'services/requestsAPI';
 import Notiflix from 'notiflix';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
-import { loginThunk } from 'services/thunk';
+import { register } from '../../redux/auth/operations';
+
 
 function Copyright(props) {
     return (
@@ -40,13 +40,10 @@ export default function SignUp() {
             email: data.get('email'),
             password: data.get('password'),
         };
-        createUser(newUser)
+        dispatch(register(newUser))
             .then(() => {
-                Notiflix.Notify.success('the user has been created');
-                dispatch(loginThunk({
-                    email: data.get('email'),
-                    password: data.get('password'),
-                }))
+                Notiflix.Notify.success(`the user ${newUser.name} has been created`);
+                dispatch(register(newUser))
             })
             .catch((error) => Notiflix.Notify.warning(error.message))
     };

@@ -1,102 +1,59 @@
-import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom/dist";
-import { logOut } from "redux/auth/authSlice";
-import { delToken } from "services/instance";
-import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Link from '@mui/material/Link';
-import { NavLink } from "react-router-dom/dist";
-
-function Copyright() {
-    return (
-    <Typography variant="body2" color="text.secondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://github.com/stanislav-pravdiuk/goit-react-hw-08-phonebook">
-        Stanislav Pravdiuk
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-    </Typography>
-    );
-}
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom/dist";
+import { logOut } from "redux/auth/operations";
 
 const defaultTheme = createTheme();
 
 export default function UserMenu() {
 
-    const { profile } = useSelector((state) => state.auth);
-    // const navigate = useNavigate();
+    const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
         const handleLogout = () => {
         dispatch(logOut());
-        delToken();
-    };
+        };
 
     return (
     <ThemeProvider theme={defaultTheme}>
-        <CssBaseline />
-        <AppBar position="relative">
-        <Toolbar>
-            <ContactPhoneIcon sx={{ mr: 2 }} />
-            <Typography variant="h6" color="inherit" noWrap>
-                        <NavLink style={{
-                            color: 'inherit', textDecoration: 'none',
-                        }} to='/'>Phonebook</NavLink>
-            </Typography>
-        </Toolbar>
-        </AppBar>
         <main>
-
         <Box
-            sx={{
+            sx={{   
                 bgcolor: 'background.paper',
                 pt: 8,
                 pb: 6,
+                marginTop: 20,
             }}
         >
-            <Container maxWidth="xl">
-            <Typography
-                component="h1" 
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-            >{profile.email}
-            </Typography>
+        <Container maxWidth="xl">
+                        {user && <Typography
+                            component="h1"
+                            variant="h5"
+                            align="center"
+                            color="text.primary"
+                            gutterBottom
+                        >
+                            {user.email}
+                        </Typography>}
             <Stack
                 sx={{ pt: 4 }}
                 direction="row"
                 spacing={2}
                 justifyContent="center"
-                >
-                    <Button variant="contained" onClick={handleLogout}>Logout</Button>
-                    
-                {/* <Button variant="contained" onClick={() => { navigate('/') }}>Phonebook</Button>
-                <Button variant="outlined" onClick={handleLogout}>Logout</Button> */}
+            >
+            <Button variant="contained" onClick={() => { navigate('/contacts') }}>Phonebook</Button>
+            <Button variant="outlined" onClick={handleLogout}>Logout</Button>
             </Stack>
-            </Container>
+        </Container>
         </Box>
-            </main>
-                    <CssBaseline />
-        <Box sx={{
-            bgcolor: 'background.paper',
-            p: 6,
-            position: 'fixed',
-            bottom: 0,
-            width: '100%',
-        }} component="footer">
-            <Copyright />
-        </Box>
+        </main>
     </ThemeProvider>
     );
-}
+};

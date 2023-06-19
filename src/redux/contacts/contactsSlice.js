@@ -1,65 +1,58 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { deleteContactThunk, getContactsThunk, postContactThunk } from "services/thunk";
-import { initialState } from "redux/contacts/initialState";
+import {fetchAllContacts, addContact, deleteContact} from './operations';
 
-const STATUS = {
-    PENDING: 'pending',
-    FULFILLED: 'fulfilled',
-    REJECTED: 'rejected'
+
+const pendingStatus = state => {
+  state.isLoading = true
+}
+
+const rejectedStatus = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
 };
 
-const arrayRequests = [getContactsThunk, postContactThunk, deleteContactThunk];
-const updateStatus = (status) => {
-    return arrayRequests.map(el => el[status])
+const handleFulfilledGetContacts = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = null;
+  state.items = payload;
 };
 
-const handlePending = (state) => {
-    state.isLoading = true
-};
+const handleFulfilledAddContact = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = null;
 
-const handleFulfilled = (state) => {
-    state.isLoading = false
-    state.error = ''
-};
-
-const handleFulfilledGet = (state, { payload }) => {
-    state.isLoading = false
-    state.items = payload
-    state.error = ''
-};
-
-const handleFulfilledPost = (state, { payload }) => {
-    if (state.items.some(contact => contact.name === payload.name)) {
-        Notify.warning(`${payload.name} is already in contacts`);
-        return
+  const existContact = state.items.find(item => item.name === payload.name)
+    if (existContact) {
+       return Notify.warning(`${existContact.name} is already in contacts`);
     };
 
     state.items.push(payload);
 };
 
-const handleFulfilledDelete = (state, { payload }) => {
+const handleFulfilledDeleteContact = (state, { payload }) => {
     state.items = state.items.filter(item => item.id !== payload.id);
 };
 
-const handleRejected = (state, {error}) => {
-    state.isLoading = false
-    state.error = error.message
-};
 
 const itemsSlice = createSlice({
     name: 'contacts',
-    initialState: initialState,
-    extraReducers: (builder) => {
-        const {PENDING, FULFILLED, REJECTED} = STATUS
-        builder
-            .addCase(getContactsThunk.fulfilled, handleFulfilledGet)
-            .addCase(postContactThunk.fulfilled, handleFulfilledPost)
-            .addCase(deleteContactThunk.fulfilled, handleFulfilledDelete)
-            .addMatcher(isAnyOf(...updateStatus(PENDING)), handlePending)
-            .addMatcher(isAnyOf(...updateStatus(FULFILLED)), handleFulfilled)
-            .addMatcher(isAnyOf(...updateStatus(REJECTED)), handleRejected)
-        }
-    });
+    initialState: {
+      items: [],
+      isLoading: false,
+      error: null,
+    },
+  extraReducers: builder =>
+    builder
+      .addCase(fetchAllContacts.pending, pendingStatus)
+      .addCase(fetchAllContacts.fulfilled, handleFulfilledGetContacts)
+      .addCase(fetchAllContacts.rejected, rejectedStatus)
+      .addCase(addContact.pending, pendingStatus)
+      .addCase(addContact.fulfilled, handleFulfilledAddContact)
+      .addCase(addContact.rejected, rejectedStatus)
+      .addCase(deleteContact.pending, pendingStatus)
+      .addCase(deleteContact.fulfilled, handleFulfilledDeleteContact)
+      .addCase(deleteContact.rejected, rejectedStatus),
+});
 
 export const itemsReducer = itemsSlice.reducer;
