@@ -1,1 +1,1 @@
-![](/assets/users.png)
+![](/assets/preview.jpg)
